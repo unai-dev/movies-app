@@ -11,7 +11,7 @@ export const MovieCard: FC<Props> = ({ movie }) => {
       <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300">
         <div className="bg-amber-50 border  shadow-lg rounded m-5 ">
           <p>
-            {movie.year} | {movie.stars.toString()}
+            {movie.year} | {Array.from({ length: movie.stars }).map(() => "⭐")}
           </p>
         </div>
         <div className="p-5">

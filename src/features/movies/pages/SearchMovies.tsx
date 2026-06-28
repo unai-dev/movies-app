@@ -1,35 +1,27 @@
-import { useEffect, useState } from "react";
-
-import { getAllMovies } from "../actions/get-all-movies";
 import { MovieList } from "../components/MovieList";
-import type { Movie } from "../interfaces/movie.interface";
 import { CustomHeader } from "../../../shared/components/CustomHeader";
 import { SearchBar } from "../../../shared/components/SearchBar";
+import { useMovie } from "../hooks/useMovie";
 
 export const SearchMovies = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    const loadMovies = async () => {
-      setMovies(await getAllMovies());
-    };
-
-    loadMovies();
-  }, []);
+  const { movies, handleSearchByGenre } = useMovie();
 
   return (
     <>
+      {/* HEADER */}
       <CustomHeader
         header="Buscador de peliculas"
         description="Busca tus peliculas favoritas"
       />
 
+      {/* SEARCH BAR */}
       <SearchBar
         placeholder="Buscar peliculas"
-        onHandleSearch={(event) => console.log({ event })}
+        onHandleSearch={(genre: string) => handleSearchByGenre(genre)}
       />
 
-      <MovieList movies={movies} />
+      {/* LIST */}
+      {movies && <MovieList movies={movies} />}
     </>
   );
 };
