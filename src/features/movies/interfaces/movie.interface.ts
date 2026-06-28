@@ -4,4 +4,5 @@ export interface Movie {
   description: string;
   year: number;
   image_url: string;
+  stars: number;
 }

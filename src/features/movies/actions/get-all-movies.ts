@@ -13,5 +13,6 @@ export const getAllMovies = async (): Promise<Movie[]> => {
     description: movie.description,
     image_url: movie.image_url,
     year: movie.year,
+    stars: movie.stars,
   }));
 };
