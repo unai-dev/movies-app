@@ -8,12 +8,7 @@ interface Props {
 export const MovieCard: FC<Props> = ({ movie }) => {
   return (
     <>
-      <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-        <div className="bg-amber-50 border  shadow-lg rounded m-5 ">
-          <p>
-            {movie.year} | {Array.from({ length: movie.stars }).map(() => "⭐")}
-          </p>
-        </div>
+      <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition-shadow duration-300">
         <div className="p-5">
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
             {movie.title}
@@ -25,8 +20,12 @@ export const MovieCard: FC<Props> = ({ movie }) => {
           <img
             src={movie.image_url}
             alt={movie.title}
-            className="w-full h-full object-fill hover:scale-105 transition-transform duration-300"
+            className="w-full h-full  hover:scale-105 transition-transform duration-300"
           />
+        </div>
+
+        <div className="shadow-lg bg-transparent rounded-2xl p-2 text-center m-5">
+          <p>{Array.from({ length: movie.stars }).map(() => "⭐")}</p>
         </div>
       </div>
     </>

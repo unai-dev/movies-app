@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllMovies } from "../actions/get-all-movies";
 import { getMoviesByGenre } from "../actions/get-movies-by-genre";
 import type { Movie } from "../interfaces/movie.interface";
@@ -6,13 +6,16 @@ import type { Movie } from "../interfaces/movie.interface";
 export const useMovie = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
+  const moviesCache = useRef<Record<string, Movie[]>>({});
+
   useEffect(() => {
     const timeoutID = setTimeout(() => {
       const loadMovies = async () => {
-        setMovies(await getAllMovies());
+        const movies = await getAllMovies();
+        setMovies(movies);
       };
       loadMovies();
-    }, 1000);
+    }, 700);
 
     return () => {
       clearTimeout(timeoutID);
@@ -22,9 +25,18 @@ export const useMovie = () => {
   const handleSearchByGenre = async (genre: string) => {
     genre = genre.toLowerCase().trim();
 
-    if (genre === "") return;
+    if (moviesCache.current[genre]) {
+      setMovies(moviesCache.current[genre]);
+    }
+
+    if (genre === "") {
+      setMovies(await getAllMovies());
+    }
 
     const movies = await getMoviesByGenre(genre);
+
+    moviesCache.current[genre] = movies;
+    console.log(moviesCache);
 
     setMovies(movies);
   };

@@ -9,7 +9,7 @@ export const CustomHeader: FC<Props> = ({ header, description }) => {
     <>
       <div className="m-5 w-full justify-center text-center  ">
         <h1 className="font-bold text-4xl ">{header}</h1>
-        <p className="text-md mt-2 text-gray-500 ">{description}</p>
+        <p className="text-md mt-2 ">{description}</p>
       </div>
     </>
   );

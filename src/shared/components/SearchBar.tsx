@@ -27,7 +27,7 @@ export const SearchBar: FC<Props> = ({ placeholder, onHandleSearch }) => {
     <>
       <div className="flex flex-row m-5">
         <input
-          className="rounded-md  text-gray-500 p-3 mb-2 mr-2 w-full border border-gray-500"
+          className="rounded-md   p-3 mb-2 mr-2 w-full border border-gray-500"
           type="text"
           placeholder={placeholder}
           value={query}
@@ -38,7 +38,7 @@ export const SearchBar: FC<Props> = ({ placeholder, onHandleSearch }) => {
         />
         <div className="">
           <button
-            className="bg-black border-white rounded-md p-3 w-full mx-3 text-white cursor-pointer hover:bg-gray-800   "
+            className="bg-black border border-white rounded-md p-3 w-full mx-3 text-white cursor-pointer hover:bg-gray-800   "
             onClick={onSearch}
           >
             Buscar
